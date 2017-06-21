@@ -1,0 +1,100 @@
+                    <div class="col-lg-12">
+                        <section class="panel">
+                            <header class="panel-heading">
+                                Update User
+                            </header>
+                            
+                            <div class="panel-body">
+                                <?php
+                                if(isset($success) && strlen($success) > 0) { ?>
+                                <div class="alert alert-success fade in">
+                                    <button data-dismiss="alert" class="close close-sm" type="button">
+                                    </button>
+                                    <strong><?php echo $success ?>.</strong> To Go To All User Please <a href="users.php">Click Here</a> .
+                                </div>
+
+                                <?php } elseif(isset($error) && strlen($error) > 0) {  ?>
+                                <div class="alert alert-danger fade in">
+                                    <button data-dismiss="alert" class="close close-sm" type="button">
+                                    </button>
+                                    <strong><?php echo $error ?>.</strong>
+                                </div>
+                                <?php } else { ?>
+
+                                    <?php if (isset($errors) && count($errors) > 0) { ?>
+                                    <div class="alert alert-danger fade in">
+                                        <button data-dismiss="alert" class="close close-sm" type="button">
+                                        </button>
+                                        <ul>
+                                            <?php foreach ($errors as $vError) {echo "<li>* $vError</li>";} ?>
+                                        </ul>
+                                    </div>
+                                    <?php }?>
+
+                                    <?php
+                                
+                                        $id       = $user['user_id'];
+                                        $username = $user['user_name'];
+                                        $password = $user['user_password'];
+                                        $email    = $user['user_email'];
+                                        $address  = $user['user_address'];
+                                        $phone    = $user['user_phone'];
+                                        $type     = $user['user_type'];
+                                    ?>
+                                <?php if ($_SESSION['user']['user_id'] == isset($_GET['id'])) {?>
+                                <form role="form" action="updateuser.php" method="post">
+                                    <div class="form-group">
+                                        <label>UserName</label>
+                                        <input type="text" class="form-control" name="username" value="<?php echo $username; ?>">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input type="password" class="form-control" name="password" placeholder="PASSWORD">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>E-Mail</label>
+                                        <input type="text" class="form-control" name="email" value="<?php echo $email; ?>">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Address</label>
+                                        <input type="text" class="form-control" name="address" value="<?php echo $address; ?>">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Phone</label>
+                                        <input type="text" class="form-control" name="phone" value="<?php echo $phone; ?>">
+                                    </div>
+
+                                    <?php if ($_SESSION['user']['user_id'] == 1) { ?>
+                                    <div class="form-group">
+                                        <label>Type</label>
+                                        <select class="form-control m-bot15" name="type">
+
+                                            <?php if($type == 1){ ?>
+                                            <option value="1" selected>Super Admin</option>
+                                            <?php } ?>
+
+                                            <?php if($type == 2){ ?>
+                                            <option value="2">Admin</option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <?php }?>
+
+                                    <input type="hidden" name="user_id" value="<?php echo $id; ?>">
+                                    <input type="submit" class="btn btn-success" name="submitUser" value="Update User">
+                                </form>
+                                <?php } ?>
+                            </div>
+                            <?php } else {?>
+                            <div class="alert alert-danger fade in">
+                                <button data-dismiss="alert" class="close close-sm" type="button">
+                                </button>
+                                <strong>Invalid user selected.</strong>
+                            </div>
+                            <?php }?>
+                        </section>
+                    </div>

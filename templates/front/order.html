@@ -1,0 +1,91 @@
+
+		
+		<!-- start main header -->
+		<header id="cart-header" class="header-size">
+            <div class="container">  
+                <div class="heading text-center">
+                    <h1 id="resHeaderTitle">Your Order.</h1>
+                </div>
+            </div>
+        </header>
+		<!-- end main header -->
+
+		<!-- Start reservationcart section -->
+		<section class="shopCart nxtSecOffset">
+			<div class="container">
+	            <div class="row">
+	                <div class="col-md-10 col-md-offset-1">
+	                    <div class="table-responsive">
+	                        <table class="table table-bordered cart-table">
+	                            <tbody>
+								<?php 
+									if (count($mealsInfo) > 0)
+									{
+										foreach ($mealsInfo as $mealArr)
+										{
+											$meal_id 			= $mealArr['meal_id'];
+											$meal_title 		= $mealArr['meal_title'];
+											$meal_image 		= $mealArr['meal_image'];
+											$meal_price 		= $mealArr['meal_price'];
+									
+								?>
+
+	                                <tr>
+	                                    <td class="item-thumb">
+	                                        <img src="uploads/meals/<?php echo $meal_image ?>" alt="meal_image" width="70">
+	                                    </td>
+	                                    <td class="item-name">
+	                                        <h4><a><?php echo $meal_title ?></a></h4>
+	                                    </td>
+	                                    <td class="item-price">
+	                                        <h4><?php echo $meal_price ?></h4>
+	                                    </td>
+	                                    <td class="item-count">
+	                                        <div class="count-input">
+	                                            <a class="incr-btn" href="#">–</a>
+	                                            <input class="quantity" type="text" value="1">
+	                                            <a class="incr-btn" href="#">+</a>
+	                                        </div>
+	                                    </td>
+	                                    <td class="item-remove">
+	                                        <a href="#" class="deleteMealBtn" id="<?php echo $meal_id ?>">
+	                                        	<i class="fa fa-trash-o" aria-hidden="true"></i>
+	                                        </a>
+	                                    </td>
+	                                </tr>
+	                                <?php }} ?>
+	                            </tbody>
+	                        </table>                  
+	                    </div>
+	                    <!--end cart table-->
+						
+                         <div class="row">
+                             <div class="col-md-12 margin-b-30">
+                                 <div class="cart-totals margin-b-20">
+                                    <div class="cart-totals-title">
+                                        <h3>Cart Totals</h3>
+                                    </div>
+                                     <div class="cart-totals-fields">
+                                         <table class="table">
+	                                            <tbody>
+		                                             <tr>
+		                                                  <td class="text-color"><strong>Total</strong></td>
+		                                                  <td class="text-color">$<strong id="totalPrice">0</strong></td>
+		                                             </tr>
+	                                         	</tbody>
+                                         	</table>
+                                     </div>
+                                 </div>
+
+                                 <div class="cart-buttons text-right">
+                                     <a href="#" id="confirm" class="btn btn-default btn-lg">Confirm</a>
+                                     <a href="#" id="checkout" class="btn btn-primary btn-lg">Checkout</a>
+                                     <div id="result"></div>
+                                 </div> 
+                             </div>
+                        </div>
+	                </div>
+	            </div>
+        	</div>
+	    </section>
+		<!-- End cart section -->

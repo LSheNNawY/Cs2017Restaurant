@@ -1,0 +1,59 @@
+                    <!-- page start-->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <section class="panel">
+                                <header class="panel-heading">
+                                    All Reservations
+                                </header>
+                                <div class="panel-body">
+                                    <section id="unseen">
+                                        <table class="table table-bordered table-striped table-condensed">
+                                            <thead>
+                                            <?php if(strlen($error)>0) {  ?>
+                                                <div class="alert alert-danger fade in">
+                                                    <button data-dismiss="alert" class="close close-sm" type="button">
+                                                    </button>
+                                                    <strong><?php echo $error ?>.</strong>
+                                                </div>
+                                                <?php } ?>
+                                                <tr>
+                                                    <th>Table title</th>
+                                                    <th>Username</th>
+                                                    <th>Phone</th>
+                                                    <th>Time start</th>
+                                                    <th>Control</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                 foreach($objects as $object)
+                                                 {
+                                                    $user_id  = $object['user'];
+                                                    $table_id = $object['table'];
+
+                                                    $start    = $object['table_reservation_time_start'];
+                                                    $username = $object['user_name'];
+                                                    $title    = $object['table_title'];
+                                                    $phone    = $object['user_phone'];
+                                                 ?>
+                                                <tr>
+                                                    <td><?php echo $title; ?></td>
+                                                    <td><?php echo $username; ?></td>
+                                                    <td><?php echo $phone; ?></td>
+                                                    <td><?php echo $start; ?></td>
+                                                    <!-- Show Users -->
+                                                    <td>
+                                                        <a href="#" class="btn btn-danger btn-xs deleteBtn" id="<?php echo $user_id?>" data-id2="<?php echo $table_id ?>" data-url="deleteusertable.php" data-column="user_id" data-column2="table_id">
+                                                            <i class="icon-trash "></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <?php  }  ?>
+                                            </tbody>
+                                        </table>
+                                    </section>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <!-- page end-->

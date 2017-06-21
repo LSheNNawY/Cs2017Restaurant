@@ -1,0 +1,90 @@
+        <!-- start main header -->
+        <header id="tables-header" class="header-size"></header>
+        <!-- end main header -->
+
+        <!-- Start tables menu -->
+        <section class="resForm nxtSecOffset">
+            <div class="menu">
+                <div class="container">
+                    <!-- Search Table -->
+                    <?php if(strlen($success)>0){ ?>
+                    <div class="alert alert-success" role="alert">
+                        <p><?php echo $success; ?>.</p>
+                    </div>
+                    <?php }elseif(strlen($error)>0){ ?>
+                    <div class="alert alert-danger" role="alert">
+                        <p><?php echo $error; ?>.</p>
+                        <!-- else Start -->
+                    <?php }else{ ?>
+
+                    <form method="post" class="reservation-form" id="reservation-form" action="reservation.php" novalidate="novalidate">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="input-group date">
+                                    <input type="text" id="dateTimePicker" class="form-control datepicker" name="date" placeholder="Enter Date To Get All available Tables">
+
+                                    <button type="submit" class="btn btn-info" name="search"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="r_result"></div>
+                    </form>
+
+                    <!-- End Search Table -->
+
+                    <div class="tables-top-grids">
+                        <div class="w3ls-tables-grids row">
+                        <?php  if(isset($avaiTables)) { ?>
+                            <div class="section-title">
+                                <h2 class="text-uppercase text-center">Select Table</h2>
+                            </div>
+                            <?php } ?>
+                            <?php
+                            if(isset($avaiTables) && count($avaiTables)>0)
+                            {
+                                foreach ($avaiTables as $tb) 
+                                {
+                                    $table_id = $tb['table_id'];
+                                    $title    = $tb['table_title'];
+                                    $number   = $tb['table_chairs_numbers'];
+                            ?>
+                            <!-- Start -->
+                            <form role="form" method="post"  action="reservation.php" novalidate="novalidate">
+                                <div class="col-md-4 text-center">
+                                    <div class="panel panel-info panel-pricing">
+                                        <div class="panel-heading">
+                                            <i class="fa fa-thumbs-o-up"></i>
+                                        </div>
+                                        <div class="panel-body text-center">
+                                            <p><strong><?php echo $number; ?> Chairs</strong></p>
+                                        </div>
+                                        <div class="panel-footer">
+                                            <?php if(!checkLogin()){ ?>
+                                            <div class="table_btn">
+                                            <a class="btn btn-info btn-xs notLoggedBtn" href="#">SELECT NOW!</a>
+                                            </div>
+                                            <?php }else{ ?>
+                                            <div class="table_btn">
+                                                <input type="hidden" value="<?php echo $table_id; ?>" name="tableId">
+                                                <input type="submit" name="reserv" class="btn btn-lg btn-block btn-info" value="SELECT NOW!">
+                                            </div>
+                                            <?php } ?>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="r_result"></div>
+                            </form>
+                            <!-- End -->
+
+
+                            <?php }} ?>
+                        </div>
+                    </div>
+                </div>
+                    <?php } ?>
+                    <!-- else end -->
+            </div>
+        </section>
+        <!-- End tables menu -->
+

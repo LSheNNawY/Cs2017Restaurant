@@ -1,0 +1,62 @@
+					<div class="row">
+						<div class="col-lg-12">
+							<section class="panel">
+								<header class="panel-heading">
+								  All meals
+								</header>
+								<table class="table table-striped table-advance table-hover">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th><i class="icon-food"></i> Meal</th>
+											<th><i class="icon-question-sign"></i>  Category</th>
+											<th><i class="icon-th-list"></i> Description</th>
+											<th><i class="icon-money"></i> Price</th>
+											<th><i class="icon-picture"></i> Image</th>
+											<th><i class="icon-gears (alias)"></i>  Control</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php 
+										if (isset($meals) && count($meals) > 0)
+										{
+											$counter = 0;
+											foreach ($meals as $meal) 
+											{
+												$meal_id 		= $meal['meal_id'];
+												$meal_title 	= $meal['meal_title'];
+												$meal_category 	= $meal['category_title'];
+												$meal_description 	= $meal['meal_description'];
+												$meal_price 	= $meal['meal_price'];
+												$meal_image 	= $meal['meal_image'];
+												
+												if (strlen($meal_description) > 50)
+												{
+													$meal_description = substr($meal_description, 0, 50);
+													$meal_description .= ' ...';
+												}
+
+												$counter += 1;
+										?>
+										<tr>
+											<td><a href="#"></a><?php echo $counter ?></td>
+											<td><a href="#"></a><?php echo $meal_title ?></td>
+											<td class="hidden-phone"><?php echo $meal_category ?></td>
+											<td><?php echo $meal_description ?></td>
+											<td><?php echo $meal_price ?> L.E.</td>
+											<td>
+												<img src="../uploads/meals/<?php echo $meal_image ?>" alt="meal_image" style="width: 80px; height: 80px" class="img-circle" /></td>
+											<td>
+												<a href="updatemeal.php?meal_id=<?php echo $meal_id?>" class="btn btn-primary btn-xs"><i class="icon-pencil"></i></a>
+												
+												<a href="#" class="btn btn-danger btn-xs deleteBtn" id="<?php echo $meal_id?>" data-url="deletemeal.php" data-column="meal_id">
+													<i class="icon-trash "></i>
+												</a>
+											</td>
+										</tr>
+										<?php }} ?>
+									</tbody>
+								</table>
+							</section>
+						</div>
+					</div>

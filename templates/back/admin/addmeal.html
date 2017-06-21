@@ -1,0 +1,70 @@
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <section class="panel" id="addingmealpanel">
+                                <header class="panel-heading">
+                                    Add new meal
+                                </header>
+                                <div class="panel-body">
+                                    <?php if (isset($error) && strlen($error) > 0) { ?>
+                                        <div class='alert alert-block alert-danger fade in'>
+                                          <button data-dismiss='alert' class='close close-sm' type='button'>
+                                              <i class='icon-remove'></i>
+                                          </button>
+                                          <strong>Oh snap!</strong> <?php echo $error ?></div> 
+                                    <?php }?>
+
+                                    <?php if (isset($success) && strlen($success) > 0) {?>
+                                    <div class="alert alert-success fade in">
+                                          <button data-dismiss="alert" class="close close-sm" type="button">
+                                              <i class="icon-remove"></i>
+                                          </button>
+                                          <strong>Well done! &nbsp;</strong> <?php echo $success ?>
+                                    </div>
+                                    <?php }?>
+                                    <form role="form" action="addmeal.php" method="POST" enctype="multipart/form-data" id="addmealform">
+                                        <!-- title -->
+                                        <div class="form-group">
+                                            <label for="mealTitle">Title.</label>
+                                            <input type="text" name="meal_title" class="form-control" id="mealTitle" placeholder="Enter meal title">
+                                        </div>
+                                        <!-- category -->
+                                        <div class="form-group">
+                                            <label for="mealCategory">Category.</label>
+                                            <select name="meal_category" class="form-control" id="mealCategory">
+                                                <option value="">Choose category</option>
+                                                <?php 
+                                                if (count($categories) > 0)
+                                                {
+                                                    foreach ($categories as $category)
+                                                    {
+                                                        $category_id        = $category['category_id'];
+                                                        $category_title     = $category['category_title'];
+                                                ?>
+                                                <option value="<?php echo $category_id?>"><?php echo $category_title?></option>
+                                                <?php }}?>
+                                            </select>
+                                        </div>
+                                        <!-- description -->
+                                        <div class="form-group">
+                                            <label for="mealDescription">Description.</label>
+                                            <textarea name="meal_description" rows="6" class="form-control" id="mealDescription" placeholder="Enter meal description"></textarea>
+                                        </div>
+                                        <!-- image -->
+                                        <div class="form-group">
+                                            <label for="mealImage">Image.</label>
+                                            <input type="file" name="meal_image" id="imageUploadForm" class="default" id="mealImage">
+                                        </div>
+
+                                        <!-- price -->
+                                        <div class="form-group">
+                                            <label for="mealPrice">Price.</label>
+                                            <input type="text" name="meal_price" class="form-control" id="mealPrice" placeholder="Enter meal price" />
+                                        </div>
+                                        
+                                        <!-- submit -->
+                                        <button type="submit" id="addmeal" class="btn btn-info">Add</button>
+                                    </form>
+                                </div>
+                            </section>
+                        </div>
+                    </div>

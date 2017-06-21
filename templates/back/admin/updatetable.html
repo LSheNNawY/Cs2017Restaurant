@@ -1,0 +1,58 @@
+                    <div class="col-lg-12">
+                        <section class="panel">
+                            <header class="panel-heading">
+                                Update table
+                            </header>
+                            <div class="panel-body">
+                                <!-- Process Succeeded -->
+                                <?php
+                                if(isset($success) && strlen($success) > 0)
+                                {
+                                ?>
+                                <div class="alert alert-success fade in">
+                                    <button data-dismiss="alert" class="close close-sm" type="button">
+                                    </button>
+                                    <strong><?php echo $success ?>.</strong> to yo to all <a href="tables.php">tables</a> .
+                                </div>
+                                <!-- Process Failed -->
+                                <?php } elseif(isset($success) && strlen($error) > 0) {?>
+                                <div class="alert alert-danger fade in">
+                                    <button data-dismiss="alert" class="close close-sm" type="button">
+                                    </button>
+                                    <strong><?php echo $error ?>.</strong>
+                                </div>
+                                <?php } elseif (count($table) > 0){
+                                        $id           = $table['table_id'];
+                                        $title        = $table['table_title'];
+                                        $number       = $table['table_chairs_numbers'];
+                                        $available    = $table['table_availability'];
+                                 ?>
+
+                                <form role="form" action="updatetable.php" method="post">
+                                    <div class="form-group">
+                                        <label>Title</label>
+                                        <input type="text" class="form-control" name="title" value="<?php echo $title; ?>">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Numbers</label>
+                                        <input type="text" class="form-control" name="number" value="<?php echo $number; ?>">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Availability</label>
+                                        <select class="form-control m-bot15" name="available">
+                                            <option value="1" <?php echo ($available == 1)? 'selected':''; ?> >Available</option>
+                                            <option value="0" <?php echo ($available == 0)? 'selected':''; ?> >Not Available</option>
+                                        </select>
+                                    </div>
+
+                                    <input type="hidden" name="table_id" value="<?php echo $id; ?>">
+                                    <input type="submit" class="btn btn-info" name="submitUser" value="Update table">
+                                </form>
+                                <?php } elseif (count($table) == 0){ ?>
+                                    <h4>Invalid table selected !</h4>
+                                <?php }?>
+                            </div>
+                        </section>
+                    </div>

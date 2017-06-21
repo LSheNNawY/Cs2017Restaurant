@@ -1,0 +1,71 @@
+		<!-- start main header -->
+		<header id="menu-header" class="header-size"></header>
+		<!-- end main header -->
+
+ 		<!-- start Categories -->            
+        <div class="cat nxtSecOffset" id="categories_section"> 
+    		<div class="container cat-menu-heading">
+				<h1>Menu</h1>
+			</div>
+			<ul>
+				<li class="<?php echo (isset($_GET['cat']))? '' : 'active' ?>"><a href="menu.php#categories_section">All</a></li>
+
+				<?php if (isset($categories) && count($categories) > 0) { 
+					foreach ($categories as $category) {
+						$catId 		= $category['category_id']; 
+						$catTitle 	= $category['category_title'];
+				?>
+
+				<li class="<?php echo (isset($_GET['cat']) && ($_GET['cat'] == $catId))? 'active' : '' ;?>">
+					<a href="menu.php?cat=<?php echo $catId ?>#categories_section" class="catBtn" data-cat="<?php echo $catId ?>"><?php echo $catTitle ?></a>
+				</li>
+				<?php }} ?>
+			</ul>     
+	      </div>
+        <!-- end Categories -->
+
+        <!-- Start meals menu -->
+		<div class="menu">
+			<div class="container">      
+				<div class="menu-top-grids">
+					<div class="w3ls-menu-grids row">
+
+					<?php if (isset($meals) && count($meals) > 0) {
+						foreach ($meals as $meal) {
+							$meal_id 			= $meal['meal_id'];
+							$meal_title 		= $meal['meal_title'];
+							$meal_category 		= $meal['category'];
+							$meal_description 	= $meal['meal_description'];
+							$meal_image 		= $meal['meal_image'];
+							$meal_price 		= $meal['meal_price'];
+
+							if (strlen($meal_description) > 50)
+								$meal_description = substr($meal_description, 0, 50) . '.....';
+							
+						?>
+
+						<div class="col-md-4 menu-grid">
+							<div class="agile-menu-grid">
+								<img src="uploads/meals/<?php echo $meal_image ?>" alt="meal image" />
+								<div class="menu-grid-desc"> 
+	                                <span class="price float-right">$<?php echo $meal_price ?></span>
+		                            <h4><?php echo $meal_title ?></h4>
+		                            <div class="row desc-n-order">
+										<p class="col-md-9">
+		                                	<?php echo $meal_description ?>
+		                            	</p>
+										<div class="col-md-2 order-btn">
+											<a href="#" class="order_meal btn btn-primary btn-xs" data-meal_id="<?php echo $meal_id ?>">Order</a>
+										</div>
+									</div>
+                        		</div>
+							</div>
+						</div>
+
+						<?php }} ?>
+					</div>
+	            </div>
+			</div>
+		</div>
+		<!-- End meals menu -->
+

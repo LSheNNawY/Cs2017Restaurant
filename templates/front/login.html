@@ -1,0 +1,138 @@
+
+		<!-- start main header -->
+		<header id="sin-header" class="header-size">
+            <div class="container">  
+            <div class="heading text-center">
+                    <h1 id="resHeaderTitle">Login &amp; Sign Up</h1>
+                </div>
+            </div>
+        </header> 
+		<!-- end main header -->
+
+		<!-- Start Sign up form -->
+		<section class="resForm nxtSecOffset">
+			<div class="container">
+	            <div class="row">
+					<div class="col-md-10 col-md-offset-1">
+						<?php if(!checkLogin()){ ?>
+						<ul class="nav nav-tabs">
+							<li class="active mouse-hov"><a data-target="#sign" data-toggle="tab">Sign Up</a></li>
+							<li class="mouse-hov"><a data-target="#login" data-toggle="tab">Login</a></li>
+						</ul>
+
+						<div class="tab-content">
+							<!-- Sign Up  -->
+							<div id="sign" class="tab-pane fade in active">
+								<?php if (isset($errors) && count($errors) > 0) { ?>
+	                                <div class="alert alert-danger fade in">
+	                                    <button data-dismiss="alert" class="close close-sm" type="button">
+	                                    </button>
+	                                    <ul>
+	                                        <?php foreach ($errors as $vError) {echo "<li>$vError</li>";} ?>
+	                                    </ul>
+	                                </div>
+	                            <?php } ?>
+								<form role="form" method="post" class="reservation-form" id="reservation-form" action="signup.php" novalidate="novalidate">
+		                        	<div class="row">
+										<div class="col-md-12">
+			                                <div class="input-group">
+			                                    <input type="text" class="form-control " name="username" id="username" placeholder="Name" />
+			                                    <div class="input-group-addon">
+			                                        <i class="fa fa-user" aria-hidden="true"></i>
+			                                    </div>
+			                                </div>
+			                            </div>
+			                        </div>
+
+			                        <div class="row">
+			                            <div class="col-md-12">
+			                                <div class="input-group">
+			                                    <input type="text" class="form-control" name="email" id="email" placeholder="Email" />
+			                                    <div class="input-group-addon">
+			                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+			                                    </div>
+			                                </div>
+			                            </div>  
+			                        </div>
+
+			                        <div class="row">
+			                            <div class="col-md-12">
+			                                <div class="input-group">
+			                                    <input type="password" class="form-control" name="password" id="password" placeholder="Password" />
+			                                    <div class="input-group-addon">
+			                                        <i class="fa fa-key" aria-hidden="true"></i>
+			                                    </div>
+			                                </div>
+			                            </div>
+			                        </div>
+
+			                        <div class="row">
+			                            <div class="col-md-12">
+			                                <div class="input-group">
+			                                    <input type="text" class="form-control" name="address" id="address" placeholder="Address" />
+			                                    <div class="input-group-addon">
+			                                        <i class="fa fa-home" aria-hidden="true"></i>
+			                                    </div>
+			                                </div>
+			                            </div>
+			                        </div>
+
+			                        <div class="row">
+			                            <div class="col-md-12">
+			                                <div class="input-group">
+			                                    <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone" />
+			                                    <div class="input-group-addon">
+			                                        <i class="fa fa-phone" aria-hidden="true"></i>
+			                                    </div>
+			                                </div>
+			                            </div>
+			                        </div>
+
+			                        <input type="submit" class="btn btn-xl btn-dark btn-block" name="signup" value="Sign Up">
+			                        <div id="r_result"></div>  
+			                	</form>
+							</div>
+							<!-- Login -->
+							<div id="login" class="tab-pane fade in">
+								<form role="form" method="post" class="reservation-form" id="reservation-form" action=signup.php novalidate="novalidate">
+			                        <div class="row">
+			                            <div class="col-md-12">
+			                                <div class="input-group">
+			                                    <input type="email" class="form-control" name="email" id="r_email" placeholder="Email" />
+			                                    <div class="input-group-addon">
+			                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+			                                    </div>
+			                                </div>
+			                            </div>  
+			                        </div>
+			                        <div class="row">
+			                            <div class="col-md-12">
+			                                <div class="input-group">
+			                                    <input type="password" class="form-control" name="password" id="r_guest" placeholder="Password" />
+			                                    <div class="input-group-addon">
+			                                        <i class="fa fa-key" aria-hidden="true"></i>
+			                                    </div>
+			                                </div>
+			                            </div>
+			                        </div>
+	                        		<input type="submit" class="btn btn-xl btn-dark btn-block" name="login" value="Login">
+	                        		<div id="r_result">
+	                        			<?php if(isset($error)) { echo "<h4 style='color: #F00; margin-top: 20px'>$error</h4>"; } ?>
+	                        		</div>
+	                    		</form>
+							</div>
+
+							
+						</div>
+						<?php }else{ ?>
+						<div class="section-title">
+							<h2 class="text-center">You've already logged in</h2>
+						</div>
+						<?php } ?>
+					</div>
+				</div>
+	        </div>
+	    </section>
+     
+		
+
